@@ -1,0 +1,40 @@
+    // const obs = of(1, 2, 3);
+    // obs.pipe(map(x => {
+    //   return x * 2;
+    // })).subscribe(data => {
+    //   console.log(data);
+    // });
+  //   obs.pipe(
+  //     map(x => { return x * 2 } ), // 1 operator
+  //     first() // first() => the first value 2 operator
+  //     ) 
+  //     .subscribe(data => console.log(data));
+   
+  // const observable = interval(1000); // interval(second)
+  // observable
+  
+  // .subscribe(int => {
+  //   console.log(int)
+  // });
+
+  // const obs = from([10, 20, 30]); // from => create observale from array
+  // obs.subscribe(data => console.log(data))
+  
+  // const obsEvent = fromEvent(document, 'click');
+  // obsEvent.subscribe(sub => console.log(sub));
+
+  // const obs = range(0, 11);
+ //  const obsTimer = timer(5000, 2000);
+
+ // const obsError = throwError(new Error('exist error now !'));
+ const obs = interval(1000).pipe
+  (mergeMap(x => 
+    x === 2 
+    ? throwError(new Error('stop counter'))
+    : of('a', 'b', 'c')
+  ))
+  
+  obs.subscribe(
+    data => console.log(data),
+    err => console.log(err)
+    )
